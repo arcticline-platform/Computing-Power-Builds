@@ -1,1302 +1,661 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Power Master Build | Ultimate Performance PC Build Guide</title>
-  <!-- Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            premium: {
-              500: '#00c6ff', // electric blue
-              600: '#0072ff', // deep blue
-              700: '#0058cc', // darker blue
-            },
-            accent: '#ff6b00', // vibrant orange
-          },
-          animation: {
-            'gradient-x': 'gradient-x 8s ease infinite',
-            'float': 'float 6s ease-in-out infinite',
-          },
-          keyframes: {
-            'gradient-x': {
-              '0%, 100%': {
-                'background-position': '0% 50%'
-              },
-              '50%': {
-                'background-position': '100% 50%'
-              }
-            },
-            'float': {
-              '0%, 100%': { transform: 'translateY(0)' },
-              '50%': { transform: 'translateY(-10px)' }
-            }
-          }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practical Blender Render Farm for Studios</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #76b900; /* NVIDIA green */
+            --secondary: #1a1d2b;
+            --accent: #00a8ff;
+            --light: #f0f4ff;
+            --dark: #0d1117;
         }
-      }
-    }
-  </script>
-  <!-- Font Awesome CDN -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <!-- Google Fonts -->
-  <link
-    href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Roboto:wght@300;400;500;700&display=swap"
-    rel="stylesheet">
-  <style>
-    .orbitron {
-      font-family: 'Orbitron', sans-serif;
-    }
-
-    .roboto {
-      font-family: 'Roboto', sans-serif;
-    }
-
-    .hero-gradient {
-      background: linear-gradient(135deg, #000000 0%, #130F40 100%);
-    }
-
-    .component-card {
-      transition: all 0.3s ease;
-      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-    }
-
-    .component-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-    }
-
-    .glow {
-      text-shadow: 0 0 10px rgba(0, 198, 255, 0.7);
-    }
-
-    .price-tag {
-      background: linear-gradient(90deg, #ff6b00 0%, #ffa502 100%);
-    }
-
-    .specs-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-      gap: 1rem;
-    }
-  </style>
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            line-height: 1.6;
+            color: var(--light);
+            background-color: var(--secondary);
+            margin: 0;
+            padding: 0;
+            background-image: radial-gradient(circle at 75% 25%, rgba(118, 185, 0, 0.1) 0%, transparent 50%);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--dark), var(--secondary));
+            padding: 60px 0 40px;
+            text-align: center;
+            border-bottom: 4px solid var(--primary);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent);
+        }
+        
+        h1 {
+            color: var(--light);
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            animation: fadeIn 0.8s ease-out;
+        }
+        
+        .subtitle {
+            color: var(--primary);
+            font-size: 1.4rem;
+            font-weight: 300;
+            max-width: 800px;
+            margin: 0 auto;
+            animation: fadeIn 0.8s ease-out 0.2s both;
+        }
+        
+        .highlight-box {
+            background: rgba(0, 168, 255, 0.1);
+            border-left: 4px solid var(--accent);
+            padding: 25px;
+            border-radius: 0 8px 8px 0;
+            margin: 40px 0;
+            animation: fadeIn 0.8s ease-out;
+        }
+        
+        .highlight-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .highlight-icon {
+            font-size: 2rem;
+            color: var(--accent);
+            margin-right: 15px;
+        }
+        
+        .highlight-title {
+            font-size: 1.8rem;
+            color: var(--light);
+            margin: 0;
+        }
+        
+        .section {
+            background: rgba(13, 17, 23, 0.7);
+            border-radius: 8px;
+            padding: 30px;
+            margin-bottom: 40px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            animation: fadeIn 0.8s ease-out;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+        }
+        
+        h2 {
+            color: var(--primary);
+            margin-top: 0;
+            font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid rgba(118, 185, 0, 0.3);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        
+        h2 i {
+            margin-right: 10px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: rgba(26, 29, 43, 0.5);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        th, td {
+            padding: 15px 20px;
+            text-align: left;
+            border-bottom: 1px solid rgba(224, 225, 221, 0.1);
+        }
+        
+        th {
+            background-color: rgba(118, 185, 0, 0.1);
+            color: var(--primary);
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+        }
+        
+        tr:nth-child(even) {
+            background-color: rgba(255, 255, 255, 0.02);
+        }
+        
+        tr:hover {
+            background-color: rgba(118, 185, 0, 0.05);
+        }
+        
+        .spec-highlight {
+            color: var(--accent);
+            font-weight: bold;
+        }
+        
+        .why-box {
+            background-color: rgba(27, 38, 59, 0.5);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 25px 0;
+            border-left: 4px solid var(--primary);
+            position: relative;
+        }
+        
+        .why-box::before {
+            content: "ℹ️";
+            position: absolute;
+            left: -15px;
+            top: -15px;
+            background: var(--secondary);
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            border: 2px solid var(--primary);
+        }
+        
+        .why-title {
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+        
+        .performance-metrics {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin: 40px 0;
+            gap: 20px;
+        }
+        
+        .metric {
+            background: linear-gradient(135deg, rgba(13, 17, 23, 0.8), rgba(26, 29, 43, 0.8));
+            padding: 25px;
+            border-radius: 8px;
+            text-align: center;
+            flex: 1;
+            min-width: 200px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(118, 185, 0, 0.1);
+            transition: transform 0.3s ease;
+            animation: fadeIn 0.8s ease-out;
+        }
+        
+        .metric:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .metric-value {
+            font-size: 2.2rem;
+            color: var(--accent);
+            font-weight: bold;
+            margin: 10px 0;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .metric-label {
+            color: var(--light);
+            opacity: 0.9;
+            font-size: 0.95rem;
+        }
+        
+        .total-cost {
+            background: linear-gradient(135deg, rgba(13, 17, 23, 0.8), rgba(26, 29, 43, 0.8));
+            padding: 30px;
+            border-radius: 8px;
+            margin-top: 40px;
+            text-align: center;
+            border: 1px solid rgba(118, 185, 0, 0.2);
+            animation: pulse 2s infinite ease-in-out;
+        }
+        
+        .total-cost-title {
+            font-size: 1.2rem;
+            color: var(--light);
+            margin-bottom: 10px;
+        }
+        
+        .total-cost-value {
+            font-size: 3rem;
+            color: var(--primary);
+            font-weight: bold;
+            margin: 10px 0;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .cost-breakdown {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .cost-item {
+            background: rgba(118, 185, 0, 0.1);
+            padding: 15px;
+            border-radius: 6px;
+            min-width: 200px;
+        }
+        
+        .cost-item-name {
+            font-size: 0.9rem;
+            color: var(--light);
+            opacity: 0.8;
+        }
+        
+        .cost-item-value {
+            font-size: 1.3rem;
+            color: var(--light);
+            font-weight: bold;
+        }
+        
+        .notes {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 20px;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            color: var(--light);
+            opacity: 0.7;
+            font-size: 0.9rem;
+            margin-top: 60px;
+            border-top: 1px solid rgba(118, 185, 0, 0.2);
+        }
+        
+        .recommendations {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+        
+        .recommendation {
+            flex: 1;
+            min-width: 250px;
+            background: rgba(0, 168, 255, 0.1);
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid var(--accent);
+        }
+        
+        .rec-icon {
+            font-size: 1.5rem;
+            color: var(--accent);
+            margin-bottom: 10px;
+        }
+        
+        .rec-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: var(--light);
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .performance-metrics {
+                flex-direction: column;
+            }
+            
+            .metric {
+                min-width: 100%;
+            }
+        }
+    </style>
 </head>
+<body>
+    <header>
+        <div class="container">
+            <h1><i class="fas fa-server"></i> Practical Blender Render Farm</h1>
+            <div class="subtitle">High-Performance Starter Build for Studios | Balance of Cost & Power</div>
+        </div>
+    </header>
 
-<body class="bg-gray-900 text-gray-100 roboto">
-  <!-- Hero Section -->
-  <header class="hero-gradient py-16 relative overflow-hidden">
-    <div class="absolute inset-0 opacity-20"
-      style="background-image: url('https://images.unsplash.com/photo-1591488320449-011701bb6704?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'); background-size: cover;">
+    <div class="container">
+        <div class="highlight-box">
+            <div class="highlight-header">
+                <div class="highlight-icon"><i class="fas fa-bolt"></i></div>
+                <h2 class="highlight-title">Build Overview</h2>
+            </div>
+            <div class="performance-metrics">
+                <div class="metric">
+                    <div class="metric-value">2-4x</div>
+                    <div class="metric-label">RTX 4090 GPUs</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-value">48-96GB</div>
+                    <div class="metric-label">Total VRAM</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-value">128GB</div>
+                    <div class="metric-label">DDR5 RAM</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-value">~$12K</div>
+                    <div class="metric-label">Total Cost</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2><i class="fas fa-microchip"></i> 1. GPUs: RTX 4090 (Best Performance per Watt)</h2>
+            <table>
+                <tr>
+                    <th>Model</th>
+                    <th>Quantity</th>
+                    <th>Key Features</th>
+                </tr>
+                <tr>
+                    <td><strong>NVIDIA RTX 4090 24GB</strong></td>
+                    <td>2x (Expandable to 4x)</td>
+                    <td>
+                        <ul>
+                            <li><span class="spec-highlight">24GB VRAM</span> per GPU (48GB total)</li>
+                            <li><span class="spec-highlight">OptiX acceleration</span> for Blender Cycles</li>
+                            <li>DLSS 3 for real-time previews</li>
+                        </ul>
+                    </td>
+                </tr>
+            </table>
+            <div class="why-box">
+                <div class="why-title">Why This Configuration?</div>
+                <p>A <span class="spec-highlight">single RTX 4090</span> outperforms dual RTX 3090s in Blender. With 2x 4090s, you get near-linear scaling in Cycles rendering. The system can expand to <span class="spec-highlight">4x GPUs</span> later without changing the motherboard.</p>
+            </div>
+            <div class="why-box">
+                <div class="why-title">Budget Alternative</div>
+                <p><strong>2x RTX 4080 Super (16GB)</strong> – ~20% slower but $800+ cheaper per GPU.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2><i class="fas fa-box-open"></i> 2. Workstation Chassis & Cooling</h2>
+            <table>
+                <tr>
+                    <th>Component</th>
+                    <th>Model</th>
+                    <th>Notes</th>
+                </tr>
+                <tr>
+                    <td><strong>Case</strong></td>
+                    <td>Fractal Design Define 7 XL</td>
+                    <td>Fits 4x GPUs, silent & great airflow</td>
+                </tr>
+                <tr>
+                    <td><strong>Cooling</strong></td>
+                    <td>Noctua NH-D15 (CPU) + GPU AIOs</td>
+                    <td>Quiet & efficient, optional liquid cooling later</td>
+                </tr>
+            </table>
+            <div class="why-box">
+                <div class="why-title">Why This Setup?</div>
+                <p>No need for a server rack - fits in an office environment. Much easier to upgrade than a rackmount system while maintaining excellent cooling performance.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2><i class="fas fa-tachometer-alt"></i> 3. CPU & Motherboard (No Bottlenecks)</h2>
+            <table>
+                <tr>
+                    <th>Component</th>
+                    <th>Model</th>
+                    <th>Why?</th>
+                </tr>
+                <tr>
+                    <td><strong>CPU</strong></td>
+                    <td>AMD Ryzen 9 7950X (16C/32T)</td>
+                    <td>Fast single-core for Blender viewport, 24 PCIe 5.0 lanes</td>
+                </tr>
+                <tr>
+                    <td><strong>Motherboard</strong></td>
+                    <td>ASUS ProArt X670E-CREATOR</td>
+                    <td>2x PCIe 5.0 x16 slots, 10Gbps LAN + Thunderbolt 4</td>
+                </tr>
+            </table>
+            <div class="why-box">
+                <div class="why-title">Alternative (More PCIe Lanes)</div>
+                <p><strong>Threadripper 7960X (24C/48T) + ASUS Pro WS TRX50-SAGE</strong> - More expensive but better for 4x GPUs with additional PCIe lanes.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2><i class="fas fa-memory"></i> 4. RAM & Storage (Fast Access to Assets)</h2>
+            <table>
+                <tr>
+                    <th>Component</th>
+                    <th>Model</th>
+                    <th>Notes</th>
+                </tr>
+                <tr>
+                    <td><strong>RAM</strong></td>
+                    <td>128GB DDR5 (4x32GB @ 6000MHz)</td>
+                    <td>ECC not needed for most Blender work</td>
+                </tr>
+                <tr>
+                    <td><strong>Primary SSD</strong></td>
+                    <td>2TB Samsung 990 Pro (Gen4 NVMe)</td>
+                    <td>OS + Active Projects</td>
+                </tr>
+                <tr>
+                    <td><strong>Secondary SSD</strong></td>
+                    <td>4TB Crucial T700 (Gen5 NVMe)</td>
+                    <td>Scratch Disk / Cache</td>
+                </tr>
+                <tr>
+                    <td><strong>NAS (Optional)</strong></td>
+                    <td>Synology DS1821+ (8-Bay, 64TB HDDs)</td>
+                    <td>Shared storage for team</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="section">
+            <h2><i class="fas fa-plug"></i> 5. Power Supply (Stable & Efficient)</h2>
+            <table>
+                <tr>
+                    <th>Model</th>
+                    <th>Wattage</th>
+                    <th>Why?</th>
+                </tr>
+                <tr>
+                    <td><strong>Corsair AX1600i</strong></td>
+                    <td>1600W, 80+ Titanium</td>
+                    <td>Handles 2x RTX 4090s + upgrades, silent & ultra-efficient</td>
+                </tr>
+            </table>
+            <div class="why-box">
+                <div class="why-title">Note:</div>
+                <p>If adding <strong>4x GPUs later</strong>, get a <strong>2000W PSU</strong> or a second unit.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2><i class="fas fa-network-wired"></i> 6. Networking (Fast File Transfers)</h2>
+            <table>
+                <tr>
+                    <th>Component</th>
+                    <th>Model</th>
+                    <th>Notes</th>
+                </tr>
+                <tr>
+                    <td><strong>Network Card</strong></td>
+                    <td>ASUS XG-C100C</td>
+                    <td>10Gbps Ethernet (Faster than standard 1Gbps)</td>
+                </tr>
+                <tr>
+                    <td><strong>Switch</strong></td>
+                    <td>QNAP QSW-2104-2T</td>
+                    <td>8-Port 10Gbps (For multi-workstation setups)</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="section">
+            <h2><i class="fas fa-code"></i> 7. Software & Rendering Setup</h2>
+            <table>
+                <tr>
+                    <th>Component</th>
+                    <th>Selection</th>
+                </tr>
+                <tr>
+                    <td><strong>Operating System</strong></td>
+                    <td>Windows 11 Pro (Best driver support) or Ubuntu LTS</td>
+                </tr>
+                <tr>
+                    <td><strong>Blender Configuration</strong></td>
+                    <td>Enable OptiX backend, GPU subdivision for sculpting</td>
+                </tr>
+                <tr>
+                    <td><strong>Render Manager</strong></td>
+                    <td>Free: Blender Network Render | Paid: Deadline (Best for studios)</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="section">
+            <h2><i class="fas fa-chart-line"></i> Performance Estimates (Blender Benchmark)</h2>
+            <table>
+                <tr>
+                    <th>Setup</th>
+                    <th>BMW27 Render Time</th>
+                    <th>Relative Speed</th>
+                </tr>
+                <tr>
+                    <td><strong>Single RTX 4090</strong></td>
+                    <td>~15 sec/frame</td>
+                    <td>1x</td>
+                </tr>
+                <tr>
+                    <td><strong>Dual RTX 4090</strong></td>
+                    <td>~8 sec/frame</td>
+                    <td>1.9x faster</td>
+                </tr>
+                <tr>
+                    <td><strong>Quad RTX 4090</strong></td>
+                    <td>~4 sec/frame</td>
+                    <td>3.8x faster</td>
+                </tr>
+            </table>
+            <div class="why-box">
+                <div class="why-title">Key Advantages</div>
+                <p><span class="spec-highlight">48GB VRAM Pool</span> (Enough for 8K textures & complex scenes). System can scale to <span class="spec-highlight">4x GPUs later</span> without motherboard swap.</p>
+            </div>
+        </div>
+
+        <div class="total-cost">
+            <div class="total-cost-title">Total Estimated Cost</div>
+            <div class="total-cost-value">~$8,000 - $12,000</div>
+            <div class="cost-breakdown">
+                <div class="cost-item">
+                    <div class="cost-item-name">2x RTX 4090</div>
+                    <div class="cost-item-value">$3,200</div>
+                </div>
+                <div class="cost-item">
+                    <div class="cost-item-name">Workstation</div>
+                    <div class="cost-item-value">$2,500</div>
+                </div>
+                <div class="cost-item">
+                    <div class="cost-item-name">Storage</div>
+                    <div class="cost-item-value">$1,500</div>
+                </div>
+                <div class="cost-item">
+                    <div class="cost-item-name">Networking</div>
+                    <div class="cost-item-value">$500</div>
+                </div>
+            </div>
+            <div class="notes">
+                <p><strong>Note:</strong> Scalable to 4x GPUs later for ~$12,000 total. Prices may vary based on market conditions.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2><i class="fas fa-lightbulb"></i> Final Recommendations</h2>
+            <div class="recommendations">
+                <div class="recommendation">
+                    <div class="rec-icon"><i class="fas fa-fire"></i></div>
+                    <div class="rec-title">Best for Small Studios</div>
+                    <p>Start with 2x RTX 4090s, then expand as needed. This provides excellent performance while maintaining reasonable power consumption.</p>
+                </div>
+                <div class="recommendation">
+                    <div class="rec-icon"><i class="fas fa-bolt"></i></div>
+                    <div class="rec-title">Power Efficiency</div>
+                    <p>Uses ~800W under load (cheaper to run than older multi-GPU setups). More efficient than comparable Threadripper systems.</p>
+                </div>
+                <div class="recommendation">
+                    <div class="rec-icon"><i class="fas fa-expand"></i></div>
+                    <div class="rec-title">Future-Proof</div>
+                    <p>Supports PCIe 5.0 & DDR5 for future upgrades. Can scale to 4x GPUs without replacing core components.</p>
+                </div>
+            </div>
+            <div class="why-box">
+                <div class="why-title">Need Even More Budget-Friendly?</div>
+                <p><strong>Swap RTX 4090 → RTX 4080 Super</strong> (Saves ~$1,600). Use <strong>128GB DDR4</strong> instead of DDR5 (Saves ~$200).</p>
+            </div>
+        </div>
     </div>
-    <div class="container mx-auto px-4 relative z-10">
-      <div class="max-w-4xl mx-auto text-center">
-        <h1 class="text-5xl md:text-7xl font-bold mb-6 orbitron glow">
-          <span class="text-transparent bg-clip-text bg-gradient-to-r from-premium-500 to-accent">POWER MASTER</span>
-        </h1>
-        <p class="text-xl md:text-2xl mb-8 text-gray-300 max-w-2xl mx-auto">
-          Ultimate High-End PC Build Guide with Complete Technical Specifications
-        </p>
-        <div class="inline-flex items-center space-x-2 price-tag px-6 py-3 rounded-full">
-          <span class="font-bold text-white orbitron">TOTAL: $9,548.89</span>
-          <span class="text-white animate-pulse"><i class="fas fa-bolt"></i></span>
+
+    <footer>
+        <div class="container">
+            <p>Practical Blender Render Farm Build | Designed for Studios Starting Out</p>
+            <p><i class="far fa-copyright"></i> <script>document.write(new Date().getFullYear())</script> | NVIDIA, Blender, and all related logos are trademarks of their respective owners.</p>
         </div>
-      </div>
-    </div>
-  </header>
-
-  <!-- Build Overview -->
-  <section class="py-16 bg-gray-800">
-    <div class="container mx-auto px-4">
-      <div class="max-w-4xl mx-auto">
-        <h2 class="text-3xl md:text-4xl font-bold mb-6 orbitron text-center">
-          <span class="text-transparent bg-clip-text bg-gradient-to-r from-premium-500 to-accent">BUILD OVERVIEW</span>
-        </h2>
-        <div class="bg-gray-750 rounded-xl p-6 mb-8">
-          <h3 class="text-xl font-bold orbitron mb-4 text-premium-400">Build Purpose</h3>
-          <p class="mb-4">This extreme-performance build is designed for:</p>
-          <ul class="list-disc pl-6 mb-6 space-y-2">
-            <li>8K Gaming at maximum settings</li>
-            <li>Professional 3D rendering and video editing</li>
-            <li>AI/ML development and computation</li>
-            <li>High-end workstation tasks</li>
-            <li>Future-proof performance</li>
-          </ul>
-          <h3 class="text-xl font-bold orbitron mb-4 text-premium-400">Key Features</h3>
-          <div class="specs-grid mb-6">
-            <div class="bg-gray-700 p-4 rounded-lg">
-              <div class="text-premium-400 mb-2"><i class="fas fa-microchip mr-2"></i>CPU</div>
-              <div class="text-sm">Intel Core i9-14900K (24 cores, 32 threads)</div>
-            </div>
-            <div class="bg-gray-700 p-4 rounded-lg">
-              <div class="text-premium-400 mb-2"><i class="fas fa-gamepad mr-2"></i>GPU</div>
-              <div class="text-sm">Dual NVIDIA RTX 4090 (48GB total VRAM)</div>
-            </div>
-            <div class="bg-gray-700 p-4 rounded-lg">
-              <div class="text-premium-400 mb-2"><i class="fas fa-memory mr-2"></i>RAM</div>
-              <div class="text-sm">128GB DDR5 @ 5200MHz</div>
-            </div>
-            <div class="bg-gray-700 p-4 rounded-lg">
-              <div class="text-premium-400 mb-2"><i class="fas fa-hard-drive mr-2"></i>Storage</div>
-              <div class="text-sm">1TB NVMe + 5TB HDD</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Detailed Components -->
-  <section class="py-16 bg-gray-900">
-    <div class="container mx-auto px-4">
-      <h2 class="text-3xl md:text-4xl font-bold mb-12 orbitron text-center">
-        <span class="text-transparent bg-clip-text bg-gradient-to-r from-premium-500 to-accent">COMPONENT DETAILS</span>
-      </h2>
-
-      <!-- CPU -->
-      <div class="component-card bg-gray-800 rounded-xl p-6 mb-8 border-l-4 border-premium-500">
-        <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-6">
-          <div class="flex items-start mb-4 md:mb-0">
-            <div class="bg-premium-600 p-3 rounded-lg mr-4">
-              <i class="fas fa-microchip text-white text-xl"></i>
-            </div>
-            <div>
-              <h3 class="text-2xl font-bold orbitron">Intel Core i9-14900K</h3>
-              <p class="text-gray-400">3.2 GHz 24-Core Processor</p>
-            </div>
-          </div>
-          <div class="text-premium-400 text-2xl font-bold">$432.98</div>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div>
-            <h4 class="text-lg font-bold mb-3 text-premium-400 orbitron">Technical Specifications</h4>
-            <ul class="space-y-2">
-              <li class="flex justify-between border-b border-gray-700 pb-2">
-                <span class="text-gray-400">Cores/Threads:</span>
-                <span>24 (8P+16E) / 32</span>
-              </li>
-              <li class="flex justify-between border-b border-gray-700 pb-2">
-                <span class="text-gray-400">Base Clock:</span>
-                <span>3.2 GHz</span>
-              </li>
-              <li class="flex justify-between border-b border-gray-700 pb-2">
-                <span class="text-gray-400">Boost Clock:</span>
-                <span>6.0 GHz (P-core)</span>
-              </li>
-              <li class="flex justify-between border-b border-gray-700 pb-2">
-                <span class="text-gray-400">Cache:</span>
-                <span>36MB Intel Smart Cache</span>
-              </li>
-              <li class="flex justify-between border-b border-gray-700 pb-2">
-                <span class="text-gray-400">TDP:</span>
-                <span>125W (PL2 253W)</span>
-              </li>
-              <li class="flex justify-between border-b border-gray-700 pb-2">
-                <span class="text-gray-400">Socket:</span>
-                <span>LGA1700</span>
-              </li>
-            </ul>
-          </div>
-          <div>
-            <h4 class="text-lg font-bold mb-3 text-premium-400 orbitron">Key Features</h4>
-            <ul class="list-disc pl-5 space-y-2">
-              <li>Intel Thermal Velocity Boost</li>
-              <li>Intel Adaptive Boost Technology</li>
-              <li>PCIe 5.0 & 4.0 support</li>
-              <li>DDR5 & DDR4 memory support</li>
-              <li>Intel UHD Graphics 770</li>
-              <li>Unlocked for overclocking</li>
-            </ul>
-            <div class="mt-4">
-              <a href="https://pcpartpicker.com/product/ZLjRsY/intel-core-i9-14900k-32-ghz-24-core-processor-bx8071514900k"
-                class="inline-flex items-center text-accent hover:underline" target="_blank">
-                View on PCPartPicker <i class="fas fa-external-link-alt ml-2"></i>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- CPU Cooler -->
-      <div class="component-card bg-gray-800 rounded-xl p-6 mb-8 border-l-4 border-premium-500">
-        <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-6">
-          <div class="flex items-start mb-4 md:mb-0">
-            <div class="bg-premium-600 p-3 rounded-lg mr-4">
-              <i class="fas fa-fan text-white text-xl"></i>
-            </div>
-            <div>
-              <h3 class="text-2xl font-bold orbitron">ARCTIC Liquid Freezer III 360</h3>
-              <p class="text-gray-400">360mm AIO Liquid CPU Cooler</p>
-            </div>
-          </div>
-          <div class="text-premium-400 text-2xl font-bold">$90.08</div>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div>
-            <h4 class="text-lg font-bold mb-3 text-premium-400 orbitron">Technical Specifications</h4>
-            <ul class="space-y-2">
-              <li class="flex justify-between border-b border-gray-700 pb-2">
-                <span class="text-gray-400">Radiator Size:</span>
-                <span>360mm</span>
-              </li>
-              <li class="flex justify-between border-b border-gray-700 pb-2">
-                <span class="text-gray-400">Fan Airflow:</span>
-                <span>56.3 CFM</span>
-              </li>
-              <li class="flex justify-between border-b border-gray-700 pb-2">
-                <span class="text-gray-400">Noise Level:</span>
-                <span>0-22.5 dBA</span>
-              </li>
-              <li class="flex justify-between border-b border-gray-700 pb-2">
-                <span class="text-gray-400">Socket Support:</span>
-                <span>LGA1700, AM5, AM4</span>
-              </li>
-              <li class="flex justify-between border-b border-gray-700 pb-2">
-                <span class="text-gray-400">Pump Speed:</span>
-                <span>800-2800 RPM</span>
-              </li>
-            </ul>
-          </div>
-          <div>
-            <h4 class="text-lg font-bold mb-3 text-premium-400 orbitron">Key Features</h4>
-            <ul class="list-disc pl-5 space-y-2">
-              <li>PWM-controlled fans and pump</li>
-              <li>VRM fan for motherboard cooling</li>
-              <li>Pre-applied high-performance thermal paste</li>
-              <li>Low-noise pump design</li>
-              <li>6-year manufacturer warranty</li>
-            </ul>
-            <div class="mt-4">
-              <a href="https://pcpartpicker.com/product/XgyH99/arctic-liquid-freezer-iii-360-563-cfm-liquid-cpu-cooler-acfre00136a"
-                class="inline-flex items-center text-accent hover:underline" target="_blank">
-                View on PCPartPicker <i class="fas fa-external-link-alt ml-2"></i>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Motherboard -->
-      <div class="component-card bg-gray-800 rounded-xl p-6 mb-8 border-l-4 border-premium-500">
-        <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-6">
-          <div class="flex items-start mb-4 md:mb-0">
-            <div class="bg-premium-600 p-3 rounded-lg mr-4">
-              <i class="fas fa-microchip text-white text-xl"></i>
-            </div>
-            <div>
-              <h3 class="text-2xl font-bold orbitron">MSI PRO Z790-A MAX WIFI</h3>
-              <p class="text-gray-400">ATX LGA1700 Motherboard</p>
-            </div>
-          </div>
-          <div class="text-premium-400 text-2xl font-bold">$209.99</div>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div>
-            <h4 class="text-lg font-bold mb-3 text-premium-400 orbitron">Technical Specifications</h4>
-            <ul class="space-y-2">
-              <li class="flex justify-between border-b border-gray-700 pb-2">
-                <span class="text-gray-400">Chipset:</span>
-                <span>Intel Z790</span>
-              </li>
-              <li class="flex justify-between border-b border-gray-700 pb-2">
-                <span class="text-gray-400">Memory Support:</span>
-                <span>DDR5-7200+ (OC)</span>
-              </li>
-              <li class="flex justify-between border-b border-gray-700 pb-2">
-                <span class="text-gray-400">PCIe Slots:</span>
-                <span>1x PCIe 5.0 x16, 2x PCIe 4.0 x16</span>
-              </li>
-              <li class="flex justify-between border-b border-gray-700 pb-2">
-                <span class="text-gray-400">M.2 Slots:</span>
-                <span>4x M.2 (PCIe 4.0)</span>
-              </li>
-              <li class="flex justify-between border-b border-gray-700 pb-2">
-                <span class="text-gray-400">Networking:</span>
-                <span>WiFi 6E, 2.5Gb LAN</span>
-              </li>
-            </ul>
-          </div>
-          <div>
-            <h4 class="text-lg font-bold mb-3 text-premium-400 orbitron">Key Features</h4>
-            <ul class="list-disc pl-5 space-y-2">
-              <li>16+1+1 Duet Rail Power System</li>
-              <li>Extended Heatsink Design</li>
-              <li>Lightning Gen 5 Solution</li>
-              <li>Memory Boost Technology</li>
-              <li>Pre-installed I/O Shield</li>
-            </ul>
-            <div class="mt-4">
-              <a href="https://pcpartpicker.com/product/CsvD4D/msi-pro-z790-a-max-wifi-atx-lga1700-motherboard-pro-z790-a-max-wifi"
-                class="inline-flex items-center text-accent hover:underline" target="_blank">
-                View on PCPartPicker <i class="fas fa-external-link-alt ml-2"></i>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- RAM -->
-      <div class="component-card bg-gray-800 rounded-xl p-6 mb-8 border-l-4 border-premium-500">
-        <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-6">
-          <div class="flex items-start mb-4 md:mb-0">
-            <div class="bg-premium-600 p-3 rounded-lg mr-4">
-              <i class="fas fa-memory text-white text-xl"></i>
-            </div>
-            <div>
-              <h3 class="text-2xl font-bold orbitron">Corsair Vengeance 64GB (2x32GB)</h3>
-              <p class="text-gray-400">DDR5-5200 CL40 Memory</p>
-            </div>
-          </div>
-          <div class="text-premium-400 text-2xl font-bold">$329.98 (x2)</div>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div>
-            <h4 class="text-lg font-bold mb-3 text-premium-400 orbitron">Technical Specifications</h4>
-            <ul class="space-y-2">
-              <li class="flex justify-between border-b border-gray-700 pb-2">
-                <span class="text-gray-400">Capacity:</span>
-                <span>64GB (2x32GB)</span>
-              </li>
-              <li class="flex justify-between border-b border-gray-700 pb-2">
-                <span class="text-gray-400">Speed:</span>
-                <span>DDR5-5200</span>
-              </li>
-              <li class="flex justify-between border-b border-gray-700 pb-2">
-                <span class="text-gray-400">Timings:</span>
-                <span>CL40-40-40-77</span>
-              </li>
-              <li class="flex justify-between border-b border-gray-700 pb-2">
-                <span class="text-gray-400">Voltage:</span>
-                <span>1.25V</span>
-              </li>
-              <li class="flex justify-between border-b border-gray-700 pb-2">
-                <span class="text-gray-400">Height:</span>
-                <span>35mm</span>
-              </li>
-            </ul>
-          </div>
-          <div>
-            <h4 class="text-lg font-bold mb-3 text-premium-400 orbitron">Key Features</h4>
-            <ul class="list-disc pl-5 space-y-2">
-              <li>Intel XMP 3.0 Certified</li>
-              <li>Custom PCB for signal integrity</li>
-              <li>On-Die ECC for data integrity</li>
-              <li>Low-profile heat spreader</li>
-              <li>Limited lifetime warranty</li>
-            </ul>
-            <div class="mt-4">
-              <a href="https://pcpartpicker.com/product/TJZ9TW/corsair-vengeance-64-gb-2-x-32-gb-ddr5-5200-cl40-memory-cmk64gx5m2b5200c40"
-                class="inline-flex items-center text-accent hover:underline" target="_blank">
-                View on PCPartPicker <i class="fas fa-external-link-alt ml-2"></i>
-              </a>
-            </div>
-            <div class="mt-4 p-4 bg-gray-750 rounded-lg">
-              <h5 class="font-bold mb-2">Memory Configuration Notes:</h5>
-              <p class="text-sm">For optimal quad-channel performance:</p>
-              <ul class="list-disc pl-5 mt-2 text-sm space-y-1">
-                <li>Install in A2/B2 slots first, then A1/B1</li>
-                <li>Enable XMP in BIOS for rated speeds</li>
-                <li>Check for BIOS updates for DDR5 stability</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Storage (SSD) -->
-      <div class="component-card bg-gray-800 rounded-xl p-6 mb-8 border-l-4 border-premium-500">
-        <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-6">
-          <div class="flex items-start mb-4 md:mb-0">
-            <div class="bg-premium-600 p-3 rounded-lg mr-4">
-              <i class="fas fa-database text-white text-xl"></i>
-            </div>
-            <div>
-              <h3 class="text-2xl font-bold orbitron">Kingston NV2 1TB</h3>
-              <p class="text-gray-400">PCIe 4.0 NVMe SSD</p>
-            </div>
-          </div>
-          <div class="text-premium-400 text-2xl font-bold">$61.97</div>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div>
-            <h4 class="text-lg font-bold mb-3 text-premium-400 orbitron">Technical Specifications</h4>
-            <ul class="space-y-2">
-              <li class="flex justify-between border-b border-gray-700 pb-2">
-                <span class="text-gray-400">Capacity:</span>
-                <span>1TB</span>
-              </li>
-              <li class="flex justify-between border-b border-gray-700 pb-2">
-                <span class="text-gray-400">Interface:</span>
-                <span>PCIe 4.0 x4 NVMe</span>
-              </li>
-              <li class="flex justify-between border-b border-gray-700 pb-2">
-                <span class="text-gray-400">Sequential Read:</span>
-                <span>3500 MB/s</span>
-              </li>
-              <li class="flex justify-between border-b border-gray-700 pb-2">
-                <span class="text-gray-400">Sequential Write:</span>
-                <span>2100 MB/s</span>
-              </li>
-              <li class="flex justify-between border-b border-gray-700 pb-2">
-                <span class="text-gray-400">TBW:</span>
-                <span>320TB</span>
-              </li>
-            </ul>
-          </div>
-          <div>
-            <h4 class="text-lg font-bold mb-3 text-premium-400 orbitron">Key Features</h4>
-            <ul class="list-disc pl-5 space-y-2">
-              <li>Single-sided M.2 2280 design</li>
-              <li>Low-power consumption</li>
-              <li>Self-encrypting drive (SED) support</li>
-              <li>3-year warranty</li>
-            </ul>
-            <div class="mt-4">
-              <a href="https://pcpartpicker.com/product/FnYmP6/kingston-nv2-1-tb-m2-2280-pcie-40-x4-nvme-solid-state-drive-snv2s1000g"
-                class="inline-flex items-center text-accent hover:underline" target="_blank">
-                View on PCPartPicker <i class="fas fa-external-link-alt ml-2"></i>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Storage (HDD) -->
-      <div class="component-card bg-gray-800 rounded-xl p-6 mb-8 border-l-4 border-premium-500">
-        <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-6">
-          <div class="flex items-start mb-4 md:mb-0">
-            <div class="bg-premium-600 p-3 rounded-lg mr-4">
-              <i class="fas fa-database text-white text-xl"></i>
-            </div>
-            <div>
-              <h3 class="text-2xl font-bold orbitron">Toshiba PH3500U-1I72 5TB</h3>
-              <p class="text-gray-400">7200 RPM HDD</p>
-            </div>
-          </div>
-          <div class="text-premium-400 text-2xl font-bold">$169.00</div>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div>
-            <h4 class="text-lg font-bold mb-3 text-premium-400 orbitron">Technical Specifications</h4>
-            <ul class="space-y-2">
-              <li class="flex justify-between border-b border-gray-700 pb-2">
-                <span class="text-gray-400">Capacity:</span>
-                <span>5TB</span>
-              </li>
-              <li class="flex justify-between border-b border-gray-700 pb-2">
-                <span class="text-gray-400">RPM:</span>
-                <span>7200</span>
-              </li>
-              <li class="flex justify-between border-b border-gray-700 pb-2">
-                <span class="text-gray-400">Cache:</span>
-                <span>128MB</span>
-              </li>
-              <li class="flex justify-between border-b border-gray-700 pb-2">
-                <span class="text-gray-400">Interface:</span>
-                <span>SATA 6Gb/s</span>
-              </li>
-              <li class="flex justify-between border-b border-gray-700 pb-2">
-                <span class="text-gray-400">Form Factor:</span>
-                <span>3.5"</span>
-              </li>
-            </ul>
-          </div>
-          <div>
-            <h4 class="text-lg font-bold mb-3 text-premium-400 orbitron">Key Features</h4>
-            <ul class="list-disc pl-5 space-y-2">
-              <li>Enterprise-class reliability</li>
-              <li>Helium-sealed design</li>
-              <li>Dual-stage actuator technology</li>
-              <li>5-year limited warranty</li>
-            </ul>
-            <div class="mt-4">
-              <a href="https://pcpartpicker.com/product/bwPzK8/toshiba-internal-hard-drive-ph3500u1i72"
-                class="inline-flex items-center text-accent hover:underline" target="_blank">
-                View on PCPartPicker <i class="fas fa-external-link-alt ml-2"></i>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- GPU (First) -->
-      <div class="component-card bg-gray-800 rounded-xl p-6 mb-8 border-l-4 border-premium-500">
-        <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-6">
-          <div class="flex items-start mb-4 md:mb-0">
-            <div class="bg-premium-600 p-3 rounded-lg mr-4">
-              <i class="fas fa-gamepad text-white text-xl"></i>
-            </div>
-            <div>
-              <h3 class="text-2xl font-bold orbitron">NVIDIA RTX 4090 FE</h3>
-              <p class="text-gray-400">Founders Edition 24GB GDDR6X</p>
-            </div>
-          </div>
-          <div class="text-premium-400 text-2xl font-bold">$3,349.96 (x2)</div>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div>
-            <h4 class="text-lg font-bold mb-3 text-premium-400 orbitron">Technical Specifications</h4>
-            <ul class="space-y-2">
-              <li class="flex justify-between border-b border-gray-700 pb-2">
-                <span class="text-gray-400">GPU:</span>
-                <span>AD102 (Ada Lovelace)</span>
-              </li>
-              <li class="flex justify-between border-b border-gray-700 pb-2">
-                <span class="text-gray-400">CUDA Cores:</span>
-                <span>16,384</span>
-              </li>
-              <li class="flex justify-between border-b border-gray-700 pb-2">
-                <span class="text-gray-400">Boost Clock:</span>
-                <span>2.52 GHz</span>
-              </li>
-              <li class="flex justify-between border-b border-gray-700 pb-2">
-                <span class="text-gray-400">VRAM:</span>
-                <span>24GB GDDR6X</span>
-              </li>
-              <li class="flex justify-between border-b border-gray-700 pb-2">
-                <span class="text-gray-400">Memory Bus:</span>
-                <span>384-bit</span>
-              </li>
-              <li class="flex justify-between border-b border-gray-700 pb-2">
-                <span class="text-gray-400">TDP:</span>
-                <span>450W</span>
-              </li>
-              <li class="flex justify-between border-b border-gray-700 pb-2">
-                <span class="text-gray-400">Outputs:</span>
-                <span>3x DP 1.4a, 1x HDMI 2.1</span>
-              </li>
-            </ul>
-          </div>
-          <div>
-            <h4 class="text-lg font-bold mb-3 text-premium-400 orbitron">Key Features</h4>
-            <ul class="list-disc pl-5 space-y-2">
-              <li>DLSS 3 with Frame Generation</li>
-              <li>4th Gen Tensor Cores</li>
-              <li>3rd Gen RT Cores</li>
-              <li>AV1 Encoding</li>
-              <li>NVIDIA Reflex Low Latency</li>
-              <li>NVLink Support (for SLI)</li>
-            </ul>
-            <div class="mt-4">
-              <a href="https://pcpartpicker.com/product/BCGbt6/nvidia-founders-edition-geforce-rtx-4090-24-gb-video-card-900-1g136-2530-000"
-                class="inline-flex items-center text-accent hover:underline" target="_blank">
-                View on PCPartPicker <i class="fas fa-external-link-alt ml-2"></i>
-              </a>
-            </div>
-            <div class="mt-4 p-4 bg-gray-750 rounded-lg">
-              <h5 class="font-bold mb-2">SLI/NVLink Configuration Notes:</h5>
-              <p class="text-sm">For optimal dual GPU performance, ensure:</p>
-              <ul class="list-disc pl-5 mt-2 text-sm space-y-1">
-                <li>Sufficient case space (minimum 4-slot clearance)</li>
-                <li>High airflow configuration</li>
-                <li>NVLink bridge compatible with RTX 4090 FE</li>
-                <li>Driver support for your applications</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Case -->
-      <div class="component-card bg-gray-800 rounded-xl p-6 mb-8 border-l-4 border-premium-500">
-        <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-6">
-          <div class="flex items-start mb-4 md:mb-0">
-            <div class="bg-premium-600 p-3 rounded-lg mr-4">
-              <i class="fas fa-box-open text-white text-xl"></i>
-            </div>
-            <div>
-              <h3 class="text-2xl font-bold orbitron">Corsair 4000D Airflow</h3>
-              <p class="text-gray-400">ATX Mid Tower Case</p>
-            </div>
-          </div>
-          <div class="text-premium-400 text-2xl font-bold">$104.99</div>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div>
-            <h4 class="text-lg font-bold mb-3 text-premium-400 orbitron">Technical Specifications</h4>
-            <ul class="space-y-2">
-              <li class="flex justify-between border-b border-gray-700 pb-2">
-                <span class="text-gray-400">Type:</span>
-                <span>ATX Mid Tower</span>
-              </li>
-              <li class="flex justify-between border-b border-gray-700 pb-2">
-                <span class="text-gray-400">Max GPU Length:</span>
-                <span>360mm</span>
-              </li>
-              <li class="flex justify-between border-b border-gray-700 pb-2">
-                <span class="text-gray-400">Max CPU Cooler Height:</span>
-                <span>170mm</span>
-              </li>
-              <li class="flex justify-between border-b border-gray-700 pb-2">
-                <span class="text-gray-400">Front I/O:</span>
-                <span>1x USB-C, 1x USB 3.0, Audio</span>
-              </li>
-              <li class="flex justify-between border-b border-gray-700 pb-2">
-                <span class="text-gray-400">Included Fans:</span>
-                <span>2x 120mm AirGuide</span>
-              </li>
-            </ul>
-          </div>
-          <div>
-            <h4 class="text-lg font-bold mb-3 text-premium-400 orbitron">Key Features</h4>
-            <ul class="list-disc pl-5 space-y-2">
-              <li>Steel front panel with airflow mesh</li>
-              <li>Tempered glass side panel</li>
-              <li>Spacious cable management system</li>
-              <li>Tool-free drive installation</li>
-              <li>Dust filters on all intakes</li>
-            </ul>
-            <div class="mt-4">
-              <a href="https://pcpartpicker.com/product/bCYQzy/corsair-4000d-airflow-atx-mid-tower-case-cc-9011200-ww"
-                class="inline-flex items-center text-accent hover:underline" target="_blank">
-                View on PCPartPicker <i class="fas fa-external-link-alt ml-2"></i>
-              </a>
-            </div>
-            <div class="mt-4 p-4 bg-gray-750 rounded-lg">
-              <h5 class="font-bold mb-2">Case Configuration Notes:</h5>
-              <p class="text-sm">For optimal cooling with this build:</p>
-              <ul class="list-disc pl-5 mt-2 text-sm space-y-1">
-                <li>Mount AIO radiator at top as exhaust</li>
-                <li>Add 3x front intake fans for positive pressure</li>
-                <li>Consider vertical GPU mount for better airflow</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Power Supply -->
-      <div class="component-card bg-gray-800 rounded-xl p-6 mb-8 border-l-4 border-premium-500">
-        <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-6">
-          <div class="flex items-start mb-4 md:mb-0">
-            <div class="bg-premium-600 p-3 rounded-lg mr-4">
-              <i class="fas fa-bolt text-white text-xl"></i>
-            </div>
-            <div>
-              <h3 class="text-2xl font-bold orbitron">Corsair HX1500i (2023)</h3>
-              <p class="text-gray-400">1500W 80+ Platinum PSU</p>
-            </div>
-          </div>
-          <div class="text-premium-400 text-2xl font-bold">$349.99</div>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div>
-            <h4 class="text-lg font-bold mb-3 text-premium-400 orbitron">Technical Specifications</h4>
-            <ul class="space-y-2">
-              <li class="flex justify-between border-b border-gray-700 pb-2">
-                <span class="text-gray-400">Wattage:</span>
-                <span>1500W</span>
-              </li>
-              <li class="flex justify-between border-b border-gray-700 pb-2">
-                <span class="text-gray-400">Efficiency:</span>
-                <span>80+ Platinum</span>
-              </li>
-              <li class="flex justify-between border-b border-gray-700 pb-2">
-                <span class="text-gray-400">Modular:</span>
-                <span>Fully</span>
-              </li>
-              <li class="flex justify-between border-b border-gray-700 pb-2">
-                <span class="text-gray-400">PCIe 5.0:</span>
-                <span>Yes (12VHPWR)</span>
-              </li>
-              <li class="flex justify-between border-b border-gray-700 pb-2">
-                <span class="text-gray-400">Fan:</span>
-                <span>140mm Fluid Dynamic Bearing</span>
-              </li>
-            </ul>
-          </div>
-          <div>
-            <h4 class="text-lg font-bold mb-3 text-premium-400 orbitron">Key Features</h4>
-            <ul class="list-disc pl-5 space-y-2">
-              <li>ATX 3.0 & PCIe 5.0 ready</li>
-              <li>Zero RPM fan mode</li>
-              <li>100% Japanese 105°C capacitors</li>
-              <li>Multi-GPU support</li>
-              <li>10-year warranty</li>
-            </ul>
-            <div class="mt-4">
-              <a href="https://pcpartpicker.com/product/fFbRsY/corsair-hx1500i-2023-1500-w-80-platinum-certified-fully-modular-atx-power-supply-cp-9020261-na"
-                class="inline-flex items-center text-accent hover:underline" target="_blank">
-                View on PCPartPicker <i class="fas fa-external-link-alt ml-2"></i>
-              </a>
-            </div>
-            <div class="mt-4 p-4 bg-gray-750 rounded-lg">
-              <h5 class="font-bold mb-2">Power Configuration Notes:</h5>
-              <p class="text-sm">For dual RTX 4090 setup:</p>
-              <ul class="list-disc pl-5 mt-2 text-sm space-y-1">
-                <li>Use dedicated PCIe cables for each GPU</li>
-                <li>Connect 12VHPWR cables directly (no adapters)</li>
-                <li>Consider dedicated 20A circuit for system</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Monitor -->
-      <div class="component-card bg-gray-800 rounded-xl p-6 mb-8 border-l-4 border-premium-500">
-        <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-6">
-          <div class="flex items-start mb-4 md:mb-0">
-            <div class="bg-premium-600 p-3 rounded-lg mr-4">
-              <i class="fas fa-desktop text-white text-xl"></i>
-            </div>
-            <div>
-              <h3 class="text-2xl font-bold orbitron">Samsung Odyssey G9 G93SC</h3>
-              <p class="text-gray-400">49" Dual QHD 240Hz Monitor</p>
-            </div>
-          </div>
-          <div class="text-premium-400 text-2xl font-bold">$1,099.99</div>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div>
-            <h4 class="text-lg font-bold mb-3 text-premium-400 orbitron">Technical Specifications</h4>
-            <ul class="space-y-2">
-              <li class="flex justify-between border-b border-gray-700 pb-2">
-                <span class="text-gray-400">Size:</span>
-                <span>49"</span>
-              </li>
-              <li class="flex justify-between border-b border-gray-700 pb-2">
-                <span class="text-gray-400">Resolution:</span>
-                <span>5120x1440 (32:9)</span>
-              </li>
-              <li class="flex justify-between border-b border-gray-700 pb-2">
-                <span class="text-gray-400">Refresh Rate:</span>
-                <span>240Hz</span>
-              </li>
-              <li class="flex justify-between border-b border-gray-700 pb-2">
-                <span class="text-gray-400">Response Time:</span>
-                <span>1ms (GTG)</span>
-              </li>
-              <li class="flex justify-between border-b border-gray-700 pb-2">
-                <span class="text-gray-400">Curvature:</span>
-                <span>1000R</span>
-              </li>
-              <li class="flex justify-between border-b border-gray-700 pb-2">
-                <span class="text-gray-400">HDR:</span>
-                <span>HDR2000</span>
-              </li>
-            </ul>
-          </div>
-          <div>
-            <h4 class="text-lg font-bold mb-3 text-premium-400 orbitron">Key Features</h4>
-            <ul class="list-disc pl-5 space-y-2">
-              <li>Quantum Mini-LED backlight</li>
-              <li>DisplayHDR 2000 certified</li>
-              <li>NVIDIA G-Sync Compatible</li>
-              <li>Picture-by-Picture (PBP) mode</li>
-              <li>CoreSync lighting</li>
-            </ul>
-            <div class="mt-4">
-              <a href="https://pcpartpicker.com/product/tRHqqs/samsung-odyssey-g9-g93sc-490-5120-x-1440-240-hz-curved-monitor-ls49cg932snxza"
-                class="inline-flex items-center text-accent hover:underline" target="_blank">
-                View on PCPartPicker <i class="fas fa-external-link-alt ml-2"></i>
-              </a>
-            </div>
-            <div class="mt-4 p-4 bg-gray-750 rounded-lg">
-              <h5 class="font-bold mb-2">Display Configuration Notes:</h5>
-              <p class="text-sm">For best experience with dual RTX 4090:</p>
-              <ul class="list-disc pl-5 mt-2 text-sm space-y-1">
-                <li>Use DisplayPort 1.4 for full 240Hz</li>
-                <li>Enable G-Sync in NVIDIA Control Panel</li>
-                <li>Consider monitor arm for optimal positioning</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Build Notes -->
-      <div class="component-card bg-gray-800 rounded-xl p-6 border-l-4 border-accent">
-        <h3 class="text-2xl font-bold orbitron mb-4 text-accent">Build Notes & Considerations</h3>
-        <div class="space-y-4">
-          <div>
-            <h4 class="text-lg font-bold mb-2">Power Requirements</h4>
-            <p>This build requires a minimum 1500W power supply (as specified). With dual RTX 4090 GPUs, consider:</p>
-            <ul class="list-disc pl-5 mt-2 space-y-1">
-              <li>Dedicated PCIe power cables for each GPU (no daisy-chaining)</li>
-              <li>High-quality surge protector or UPS</li>
-              <li>Possible consideration for 1600W PSU for heavy overclocking</li>
-            </ul>
-          </div>
-          <div>
-            <h4 class="text-lg font-bold mb-2">Cooling Solution</h4>
-            <p>The selected ARCTIC Liquid Freezer III 360mm AIO provides excellent cooling for the i9-14900K:</p>
-            <ul class="list-disc pl-5 mt-2 space-y-1">
-              <li>Ensure proper case mounting (top exhaust recommended)</li>
-              <li>Consider additional case fans for optimal airflow</li>
-              <li>Monitor temperatures under load, especially when overclocking</li>
-            </ul>
-          </div>
-          <div>
-            <h4 class="text-lg font-bold mb-2">Compatibility Notes</h4>
-            <ul class="list-disc pl-5 space-y-1">
-              <li>Verify GPU clearance in Corsair 4000D Airflow case (max GPU length: 360mm)</li>
-              <li>Ensure BIOS is updated for 14th-gen Intel compatibility</li>
-              <li>Check RAM clearance with CPU cooler</li>
-              <li>Confirm monitor supports dual DP 1.4 inputs for best performance</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Performance Benchmarks -->
-  <section class="py-16 bg-gray-800">
-    <div class="container mx-auto px-4">
-      <h2 class="text-3xl md:text-4xl font-bold mb-12 orbitron text-center">
-        <span class="text-transparent bg-clip-text bg-gradient-to-r from-premium-500 to-accent">EXPECTED
-          PERFORMANCE</span>
-      </h2>
-
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div class="bg-gray-750 rounded-xl p-6">
-          <h3 class="text-xl font-bold orbitron mb-4 text-center text-premium-400">Gaming Performance</h3>
-          <div class="space-y-4">
-            <div>
-              <div class="flex justify-between mb-1">
-                <span>Cyberpunk 2077 (4K RT Ultra)</span>
-                <span class="font-bold">78-112 FPS</span>
-              </div>
-              <div class="w-full bg-gray-700 rounded-full h-2.5">
-                <div class="bg-premium-500 h-2.5 rounded-full" style="width: 85%"></div>
-              </div>
-            </div>
-            <div>
-              <div class="flex justify-between mb-1">
-                <span>Microsoft Flight Sim (4K Ultra)</span>
-                <span class="font-bold">92 FPS avg</span>
-              </div>
-              <div class="w-full bg-gray-700 rounded-full h-2.5">
-                <div class="bg-premium-500 h-2.5 rounded-full" style="width: 92%"></div>
-              </div>
-            </div>
-            <div>
-              <div class="flex justify-between mb-1">
-                <span>Call of Duty (4K Extreme)</span>
-                <span class="font-bold">144+ FPS</span>
-              </div>
-              <div class="w-full bg-gray-700 rounded-full h-2.5">
-                <div class="bg-premium-500 h-2.5 rounded-full" style="width: 100%"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="bg-gray-750 rounded-xl p-6">
-          <h3 class="text-xl font-bold orbitron mb-4 text-center text-premium-400">Content Creation</h3>
-          <div class="space-y-4">
-            <div>
-              <div class="flex justify-between mb-1">
-                <span>Blender BMW Render</span>
-                <span class="font-bold">12.4 sec</span>
-              </div>
-              <div class="w-full bg-gray-700 rounded-full h-2.5">
-                <div class="bg-premium-500 h-2.5 rounded-full" style="width: 95%"></div>
-              </div>
-            </div>
-            <div>
-              <div class="flex justify-between mb-1">
-                <span>Premiere Pro 8K Export</span>
-                <span class="font-bold">3.2 min</span>
-              </div>
-              <div class="w-full bg-gray-700 rounded-full h-2.5">
-                <div class="bg-premium-500 h-2.5 rounded-full" style="width: 88%"></div>
-              </div>
-            </div>
-            <div>
-              <div class="flex justify-between mb-1">
-                <span>DaVinci Resolve 8K</span>
-                <span class="font-bold">Real-time playback</span>
-              </div>
-              <div class="w-full bg-gray-700 rounded-full h-2.5">
-                <div class="bg-premium-500 h-2.5 rounded-full" style="width: 97%"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="bg-gray-750 rounded-xl p-6">
-          <h3 class="text-xl font-bold orbitron mb-4 text-center text-premium-400">Workstation Tasks</h3>
-          <div class="space-y-4">
-            <div>
-              <div class="flex justify-between mb-1">
-                <span>V-Ray GPU Render</span>
-                <span class="font-bold">3420 pts</span>
-              </div>
-              <div class="w-full bg-gray-700 rounded-full h-2.5">
-                <div class="bg-premium-500 h-2.5 rounded-full" style="width: 98%"></div>
-              </div>
-            </div>
-            <div>
-              <div class="flex justify-between mb-1">
-                <span>SPECviewperf 2020</span>
-                <span class="font-bold">98% tile</span>
-              </div>
-              <div class="w-full bg-gray-700 rounded-full h-2.5">
-                <div class="bg-premium-500 h-2.5 rounded-full" style="width: 96%"></div>
-              </div>
-            </div>
-            <div>
-              <div class="flex justify-between mb-1">
-                <span>AI Training (ResNet-50)</span>
-                <span class="font-bold">2.4x speedup</span>
-              </div>
-              <div class="w-full bg-gray-700 rounded-full h-2.5">
-                <div class="bg-premium-500 h-2.5 rounded-full" style="width: 90%"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Full Parts List -->
-  <section class="py-16 bg-gray-900">
-    <div class="container mx-auto px-4">
-      <h2 class="text-3xl md:text-4xl font-bold mb-12 orbitron text-center">
-        <span class="text-transparent bg-clip-text bg-gradient-to-r from-premium-500 to-accent">COMPLETE PARTS
-          LIST</span>
-      </h2>
-
-      <div class="bg-gray-800 rounded-xl overflow-hidden shadow-2xl">
-        <div class="overflow-x-auto">
-          <table class="min-w-full divide-y divide-gray-700">
-            <thead class="bg-premium-700">
-              <tr>
-                <th scope="col" class="px-6 py-4 text-left text-sm font-bold orbitron uppercase tracking-wider">
-                  Component
-                </th>
-                <th scope="col" class="px-6 py-4 text-left text-sm font-bold orbitron uppercase tracking-wider">
-                  Model
-                </th>
-                <th scope="col" class="px-6 py-4 text-left text-sm font-bold orbitron uppercase tracking-wider">
-                  Specifications
-                </th>
-                <th scope="col" class="px-6 py-4 text-left text-sm font-bold orbitron uppercase tracking-wider">
-                  Price
-                </th>
-              </tr>
-            </thead>
-            <tbody class="bg-gray-800 divide-y divide-gray-700">
-              <!-- CPU -->
-              <tr class="hover:bg-gray-750 transition-colors">
-                <td class="px-6 py-4 whitespace-nowrap font-medium orbitron">CPU</td>
-                <td class="px-6 py-4">
-                  <a href="https://pcpartpicker.com/product/ZLjRsY/intel-core-i9-14900k-32-ghz-24-core-processor-bx8071514900k"
-                    class="text-gray-300 hover:text-premium-400 hover:underline transition-colors" target="_blank">
-                    Intel Core i9-14900K
-                  </a>
-                </td>
-                <td class="px-6 py-4">
-                  <div class="text-sm">
-                    <div>24C/32T, 3.2-6.0GHz, 36MB cache</div>
-                    <div class="text-gray-400">LGA1700, 125W TDP</div>
-                  </div>
-                </td>
-                <td class="px-6 py-4 whitespace-nowrap text-premium-400 font-medium">
-                  $432.98
-                </td>
-              </tr>
-
-              <!-- CPU Cooler -->
-              <tr class="hover:bg-gray-750 transition-colors">
-                <td class="px-6 py-4 whitespace-nowrap font-medium orbitron">CPU Cooler</td>
-                <td class="px-6 py-4">
-                  <a href="https://pcpartpicker.com/product/XgyH99/arctic-liquid-freezer-iii-360-563-cfm-liquid-cpu-cooler-acfre00136a"
-                    class="text-gray-300 hover:text-premium-400 hover:underline transition-colors" target="_blank">
-                    ARCTIC Liquid Freezer III 360
-                  </a>
-                </td>
-                <td class="px-6 py-4">
-                  <div class="text-sm">
-                    <div>360mm AIO, 56.3 CFM</div>
-                    <div class="text-gray-400">LGA1700 compatible, PWM fans</div>
-                  </div>
-                </td>
-                <td class="px-6 py-4 whitespace-nowrap text-premium-400 font-medium">
-                  $90.08
-                </td>
-              </tr>
-
-              <!-- Motherboard -->
-              <tr class="hover:bg-gray-750 transition-colors">
-                <td class="px-6 py-4 whitespace-nowrap font-medium orbitron">Motherboard</td>
-                <td class="px-6 py-4">
-                  <a href="https://pcpartpicker.com/product/CsvD4D/msi-pro-z790-a-max-wifi-atx-lga1700-motherboard-pro-z790-a-max-wifi"
-                    class="text-gray-300 hover:text-premium-400 hover:underline transition-colors" target="_blank">
-                    MSI PRO Z790-A MAX WIFI
-                  </a>
-                </td>
-                <td class="px-6 py-4">
-                  <div class="text-sm">
-                    <div>ATX, Z790, DDR5</div>
-                    <div class="text-gray-400">4x M.2, WiFi 6E, 2.5Gb LAN</div>
-                  </div>
-                </td>
-                <td class="px-6 py-4 whitespace-nowrap text-premium-400 font-medium">
-                  $209.99
-                </td>
-              </tr>
-
-              <!-- RAM (First Set) -->
-              <tr class="hover:bg-gray-750 transition-colors">
-                <td class="px-6 py-4 whitespace-nowrap font-medium orbitron">RAM</td>
-                <td class="px-6 py-4">
-                  <a href="https://pcpartpicker.com/product/TJZ9TW/corsair-vengeance-64-gb-2-x-32-gb-ddr5-5200-cl40-memory-cmk64gx5m2b5200c40"
-                    class="text-gray-300 hover:text-premium-400 hover:underline transition-colors" target="_blank">
-                    Corsair Vengeance 64GB (2x32GB)
-                  </a>
-                </td>
-                <td class="px-6 py-4">
-                  <div class="text-sm">
-                    <div>DDR5-5200 CL40</div>
-                    <div class="text-gray-400">1.25V, XMP 3.0</div>
-                  </div>
-                </td>
-                <td class="px-6 py-4 whitespace-nowrap text-premium-400 font-medium">
-                  $164.99
-                </td>
-              </tr>
-
-              <!-- RAM (Second Set) -->
-              <tr class="hover:bg-gray-750 transition-colors">
-                <td class="px-6 py-4 whitespace-nowrap font-medium orbitron">RAM</td>
-                <td class="px-6 py-4">
-                  <a href="https://pcpartpicker.com/product/TJZ9TW/corsair-vengeance-64-gb-2-x-32-gb-ddr5-5200-cl40-memory-cmk64gx5m2b5200c40"
-                    class="text-gray-300 hover:text-premium-400 hover:underline transition-colors" target="_blank">
-                    Corsair Vengeance 64GB (2x32GB)
-                  </a>
-                </td>
-                <td class="px-6 py-4">
-                  <div class="text-sm">
-                    <div>DDR5-5200 CL40</div>
-                    <div class="text-gray-400">1.25V, XMP 3.0</div>
-                  </div>
-                </td>
-                <td class="px-6 py-4 whitespace-nowrap text-premium-400 font-medium">
-                  $164.99
-                </td>
-              </tr>
-
-              <!-- SSD Storage -->
-              <tr class="hover:bg-gray-750 transition-colors">
-                <td class="px-6 py-4 whitespace-nowrap font-medium orbitron">Storage (SSD)</td>
-                <td class="px-6 py-4">
-                  <a href="https://pcpartpicker.com/product/FnYmP6/kingston-nv2-1-tb-m2-2280-pcie-40-x4-nvme-solid-state-drive-snv2s1000g"
-                    class="text-gray-300 hover:text-premium-400 hover:underline transition-colors" target="_blank">
-                    Kingston NV2 1TB
-                  </a>
-                </td>
-                <td class="px-6 py-4">
-                  <div class="text-sm">
-                    <div>PCIe 4.0 NVMe</div>
-                    <div class="text-gray-400">3500/2100 MB/s, M.2 2280</div>
-                  </div>
-                </td>
-                <td class="px-6 py-4 whitespace-nowrap text-premium-400 font-medium">
-                  $61.97
-                </td>
-              </tr>
-
-              <!-- HDD Storage -->
-              <tr class="hover:bg-gray-750 transition-colors">
-                <td class="px-6 py-4 whitespace-nowrap font-medium orbitron">Storage (HDD)</td>
-                <td class="px-6 py-4">
-                  <a href="https://pcpartpicker.com/product/bwPzK8/toshiba-internal-hard-drive-ph3500u1i72"
-                    class="text-gray-300 hover:text-premium-400 hover:underline transition-colors" target="_blank">
-                    Toshiba PH3500U-1I72 5TB
-                  </a>
-                </td>
-                <td class="px-6 py-4">
-                  <div class="text-sm">
-                    <div>7200 RPM, 128MB cache</div>
-                    <div class="text-gray-400">3.5", SATA 6Gb/s</div>
-                  </div>
-                </td>
-                <td class="px-6 py-4 whitespace-nowrap text-premium-400 font-medium">
-                  $169.00
-                </td>
-              </tr>
-
-              <!-- GPU (First) -->
-              <tr class="hover:bg-gray-750 transition-colors">
-                <td class="px-6 py-4 whitespace-nowrap font-medium orbitron">GPU</td>
-                <td class="px-6 py-4">
-                  <a href="https://pcpartpicker.com/product/BCGbt6/nvidia-founders-edition-geforce-rtx-4090-24-gb-video-card-900-1g136-2530-000"
-                    class="text-gray-300 hover:text-premium-400 hover:underline transition-colors" target="_blank">
-                    NVIDIA RTX 4090 FE
-                  </a>
-                </td>
-                <td class="px-6 py-4">
-                  <div class="text-sm">
-                    <div>24GB GDDR6X, 16384 CUDA cores</div>
-                    <div class="text-gray-400">2.52GHz boost, 450W TDP</div>
-                  </div>
-                </td>
-                <td class="px-6 py-4 whitespace-nowrap text-premium-400 font-medium">
-                  $3,349.96
-                </td>
-              </tr>
-
-              <!-- GPU (Second) -->
-              <tr class="hover:bg-gray-750 transition-colors">
-                <td class="px-6 py-4 whitespace-nowrap font-medium orbitron">GPU</td>
-                <td class="px-6 py-4">
-                  <a href="https://pcpartpicker.com/product/BCGbt6/nvidia-founders-edition-geforce-rtx-4090-24-gb-video-card-900-1g136-2530-000"
-                    class="text-gray-300 hover:text-premium-400 hover:underline transition-colors" target="_blank">
-                    NVIDIA RTX 4090 FE
-                  </a>
-                </td>
-                <td class="px-6 py-4">
-                  <div class="text-sm">
-                    <div>24GB GDDR6X, 16384 CUDA cores</div>
-                    <div class="text-gray-400">2.52GHz boost, 450W TDP</div>
-                  </div>
-                </td>
-                <td class="px-6 py-4 whitespace-nowrap text-premium-400 font-medium">
-                  $3,349.96
-                </td>
-              </tr>
-
-              <!-- Case -->
-              <tr class="hover:bg-gray-750 transition-colors">
-                <td class="px-6 py-4 whitespace-nowrap font-medium orbitron">Case</td>
-                <td class="px-6 py-4">
-                  <a href="https://pcpartpicker.com/product/bCYQzy/corsair-4000d-airflow-atx-mid-tower-case-cc-9011200-ww"
-                    class="text-gray-300 hover:text-premium-400 hover:underline transition-colors" target="_blank">
-                    Corsair 4000D Airflow
-                  </a>
-                </td>
-                <td class="px-6 py-4">
-                  <div class="text-sm">
-                    <div>ATX Mid Tower</div>
-                    <div class="text-gray-400">2x USB 3.0, 1x USB-C, Tempered Glass</div>
-                  </div>
-                </td>
-                <td class="px-6 py-4 whitespace-nowrap text-premium-400 font-medium">
-                  $104.99
-                </td>
-              </tr>
-
-              <!-- Power Supply -->
-              <tr class="hover:bg-gray-750 transition-colors">
-                <td class="px-6 py-4 whitespace-nowrap font-medium orbitron">Power Supply</td>
-                <td class="px-6 py-4">
-                  <a href="https://pcpartpicker.com/product/fFbRsY/corsair-hx1500i-2023-1500-w-80-platinum-certified-fully-modular-atx-power-supply-cp-9020261-na"
-                    class="text-gray-300 hover:text-premium-400 hover:underline transition-colors" target="_blank">
-                    Corsair HX1500i (2023)
-                  </a>
-                </td>
-                <td class="px-6 py-4">
-                  <div class="text-sm">
-                    <div>1500W 80+ Platinum</div>
-                    <div class="text-gray-400">Fully Modular, ATX 3.0</div>
-                  </div>
-                </td>
-                <td class="px-6 py-4 whitespace-nowrap text-premium-400 font-medium">
-                  $349.99
-                </td>
-              </tr>
-
-              <!-- Monitor -->
-              <tr class="hover:bg-gray-750 transition-colors">
-                <td class="px-6 py-4 whitespace-nowrap font-medium orbitron">Monitor</td>
-                <td class="px-6 py-4">
-                  <a href="https://pcpartpicker.com/product/tRHqqs/samsung-odyssey-g9-g93sc-490-5120-x-1440-240-hz-curved-monitor-ls49cg932snxza"
-                    class="text-gray-300 hover:text-premium-400 hover:underline transition-colors" target="_blank">
-                    Samsung Odyssey G9 G93SC
-                  </a>
-                </td>
-                <td class="px-6 py-4">
-                  <div class="text-sm">
-                    <div>49" 5120x1440 240Hz</div>
-                    <div class="text-gray-400">1000R curve, 1ms, HDR2000</div>
-                  </div>
-                </td>
-                <td class="px-6 py-4 whitespace-nowrap text-premium-400 font-medium">
-                  $1,099.99
-                </td>
-              </tr>
-
-              <!-- Total Row -->
-              <tr class="bg-gray-750 font-bold">
-                <td class="px-6 py-4"></td>
-                <td class="px-6 py-4"></td>
-                <td class="px-6 py-4 text-right">Total:</td>
-                <td class="px-6 py-4 text-premium-400 text-xl">$9,548.89</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Call to Action -->
-  <section class="py-16 bg-gradient-to-r from-premium-600 to-premium-700">
-    <div class="container mx-auto px-4 text-center">
-      <h2 class="text-3xl md:text-4xl font-bold mb-6 orbitron">READY TO BUILD?</h2>
-      <p class="text-xl mb-8 max-w-2xl mx-auto">Get all these components and start your ultimate PC building journey</p>
-      <div class="flex flex-col sm:flex-row justify-center gap-4">
-        <a href="#"
-          class="bg-accent hover:bg-orange-600 text-white font-bold py-3 px-8 rounded-full transition-all transform hover:scale-105">
-          DOWNLOAD PARTS LIST <i class="fas fa-download ml-2"></i>
-        </a>
-        <a href="#"
-          class="bg-white hover:bg-gray-100 text-gray-900 font-bold py-3 px-8 rounded-full transition-all transform hover:scale-105">
-          SHARE THIS BUILD <i class="fas fa-share-alt ml-2"></i>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="bg-gray-900 pt-16 pb-8 border-t border-gray-800">
-    <div class="container mx-auto px-4">
-      <div class="flex flex-col md:flex-row justify-between items-center mb-8">
-        <div class="mb-6 md:mb-0">
-          <h3 class="text-2xl font-bold orbitron mb-2">
-            <span class="text-transparent bg-clip-text bg-gradient-to-r from-premium-500 to-accent">POWER MASTER</span>
-          </h3>
-          <p class="text-gray-400">Ultimate PC Build Guides</p>
-        </div>
-        <div class="flex space-x-6">
-          <a href="#" class="text-gray-400 hover:text-premium-400 text-xl transition-colors">
-            <i class="fab fa-twitter"></i>
-          </a>
-          <a href="#" class="text-gray-400 hover:text-premium-400 text-xl transition-colors">
-            <i class="fab fa-instagram"></i>
-          </a>
-          <a href="#" class="text-gray-400 hover:text-premium-400 text-xl transition-colors">
-            <i class="fab fa-youtube"></i>
-          </a>
-          <a href="#" class="text-gray-400 hover:text-premium-400 text-xl transition-colors">
-            <i class="fab fa-discord"></i>
-          </a>
-        </div>
-      </div>
-      <div class="border-t border-gray-800 pt-8 text-center text-gray-500">
-        <p>&copy; <script>document.write(new Date().getFullYear())</script> Power Master Builds. All prices are approximate and subject to change.</p>
-        <p class="mt-2 text-sm">Disclaimer: This build assumes compatibility between all components but always verify before purchasing.</p>
-      </div>
-    </div>
-  </footer>
+    </footer>
 </body>
-
 </html>
